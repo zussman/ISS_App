@@ -4,30 +4,35 @@
   <div class="row">
     <div class="col-md-3 col-md-offset-9">
       <div class="panel panel-default">
-        <table class="table table-striped">
-          <tbody>
-            <tr>
-              <td><strong>Time</strong></td>
-              <td><%= @timestamp %></td>
-            </tr>
-            <tr>
-              <td><strong>Altitude</strong></td>
-              <td><%= number_to_human((@altitude * 0.621371), precision: 5) %> miles</td>
-            </tr>
-            <tr>
-              <td><strong>Velocity</strong></td>
-              <td><%= @velocity %></td>
-            </tr>
-            <tr>
-              <td><strong>Latitude</strong></td>
-              <td><%= @latitude %></td>
-            </tr>
-            <tr>
-              <td><strong>Longitude</strong></td>
-              <td><%= @longitude %></td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <tbody>
+              <tr>
+                <td><strong>Time</strong></td>
+                <td><%= @time %></td>
+              </tr>
+              <tr>
+                <td><strong>Altitude</strong></td>
+                <td><%= @altitude %> miles</td>
+              </tr>
+              <tr>
+                <td><strong>Velocity</strong></td>
+                <td><%= @velocity %> mph</td>
+              </tr>
+              <tr>
+                <td><strong>Latitude</strong></td>
+                <td><%= @latitude %></td>
+              </tr>
+              <tr>
+                <td><strong>Longitude</strong></td>
+                <td><%= @longitude %></td>
+              </tr>
+              <tr>
+                <td colspan="2"><%= @solar_lat %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -36,10 +41,18 @@
 <div id="map"></div>
 
 <script type="text/javascript">
-handler = Gmaps.build('Google');
+var map = handler = Gmaps.build('Google');
 var latitude = <%= @latitude || 0 %>
 var longitude = <%= @longitude || 0 %>
-handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+handler.buildMap({
+  internal: {id: 'map'},
+  provider: {
+      zoom: 4,
+      center: new google.maps.LatLng(latitude, longitude),
+      mapTypeId: google.maps.MapTypeId.SATELLITE,
+    }
+  }, 
+  function(){
   markers = handler.addMarkers([
     {
       "lat": latitude,
@@ -52,7 +65,6 @@ handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
       "infowindow": "hello!"
     }
   ]);
-  handler.bounds.extendWith(markers);
-  handler.fitMapToBounds();
 });
+nite.init(map);
 </script>
