@@ -1,0 +1,29 @@
+<%= simple_nested_form_for @location do |f| %>
+  
+  <% if @location.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@location.errors.count, "error") %> prevented this location from being saved:
+        <!-- 'pluralize' is a rails helper that takes a number and a string as arguments. If the number is greater than one, the string is automatically pluralized. -->
+      </h2>
+      <ul>
+        <% @location.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+<!-- The 'url: locations_path' tells the form to 
+submit to the locations POST route by default. The
+'form_for :location' part tells rails that the form 
+is for our 'articles' resource. -->
+  <%= f.input :location_name %>
+  <%= f.input :address, placeholder: "'123 Main Street Nashville' or 'New York City' or even just '20852'" %>
+  <%= f.input :city %>
+  <%= f.input :country %>
+  <%= f.button :submit, class: "btn btn-primary" %>
+  
+<% end %>
