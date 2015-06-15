@@ -1,4 +1,5 @@
 require 'HTTParty'
+require 'will_paginate/array'
 
 class LocationsController < ApplicationController
   before_action :get_passes, only: [:show]
@@ -50,6 +51,7 @@ class LocationsController < ApplicationController
   def get_passes
     @location = Location.find(params[:id])
     @iss_passes = HTTParty.get("http://api.open-notify.org/iss-pass.json?lat=#{@location.latitude}&lon=#{@location.longitude}&n=50", :verify => false)["response"]
+    @iss_passes = @iss_passes.paginate(page: params[:page], per_page: 10)
   end
 
   private

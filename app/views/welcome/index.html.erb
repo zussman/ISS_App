@@ -56,7 +56,6 @@ function moveISS () {
 }
 
 
-var mapStyle;
 var map = handler = Gmaps.build('Google');
 var latitude = <%= @latitude || 0 %>;
 var longitude = <%= @longitude || 0 %>;
@@ -79,7 +78,7 @@ handler.buildMap({
         "height": 36,
       },*/
       "infowindow": "hello!"
-    }
+    },
   ]);
 });
 nite.init(map);

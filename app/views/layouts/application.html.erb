@@ -19,9 +19,10 @@
       <div class="collapse navbar-collapse" id="navbar-items">
         <% if user_signed_in? %>
           <ul class="nav navbar-nav">
+            <li><%= link_to "About" %></li>
             <li><%= link_to "My Passes" %></li>
             <li><%= link_to "My Notifications" %></li>
-            <li><%= link_to "Default Location" %></li>
+            <li><%= link_to "My Locations", locations_path %></li>
             <li class="dropdown">
               <a href="user" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">User Name <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">

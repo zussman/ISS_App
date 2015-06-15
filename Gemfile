@@ -39,6 +39,7 @@ gem 'http-cookie', '~> 1.0.2'
 gem 'httparty'
 gem 'will_paginate', '~> 3.0.6'
 gem 'will_paginate-bootstrap'
+gem 'twilio-ruby'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

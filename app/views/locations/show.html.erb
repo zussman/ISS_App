@@ -6,14 +6,17 @@
 <table class="table table-striped">
   <thead>
     <th>Date</th>
+    <th>Time to Pass</th>
     <th>Duration</th>
     <th>Rise Time</th>
   </thead>
-  <% @iss_passes.each do |pass| %>
-    <tr>
-      <td><%= Time.at(pass["risetime"].to_i).strftime('%A %b, %Y') %></td>
-      <td><%= Time.at(pass["duration"].to_i).strftime('%M') %>m <%= Time.at(pass["duration"].to_i).strftime('%S') %>s</td>
-      <td><%= Time.at(pass["risetime"].to_i).strftime('%I:%M %P %Z') %></td>
-    </tr>
-  <% end %>
+  <%= will_paginate @iss_passes, renderer: BootstrapPagination::Rails %>
+    <% @iss_passes.each do |pass| %>
+      <tr>
+        <td><%= Time.at(pass["risetime"].to_i).strftime('%A %B %e, %Y') %></td>
+        <td><%= distance_of_time_in_words(Time.now, Time.at(pass["risetime"].to_i)) %></td>
+        <td><%= Time.at(pass["duration"].to_i).strftime('%M') %>m <%= Time.at(pass["duration"].to_i).strftime('%S') %>s</td>
+        <td><%= Time.at(pass["risetime"].to_i).strftime('%I:%M %P %Z') %></td>
+      </tr>
+    <% end %>
 </table>

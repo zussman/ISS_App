@@ -10,7 +10,7 @@
       <th>Longitude</th>
       <th colspan="2">Actions</th>
     </thead>
-    <%= will_paginate @locations %>
+    <%= will_paginate @locations, renderer: BootstrapPagination::Rails %>
       <% @locations.each do |location| %>
         <tr>
           <td><%= link_to location.location_name, location %></td>
