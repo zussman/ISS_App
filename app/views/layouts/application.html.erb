@@ -6,7 +6,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
-  <nav class="navbar navbar-inverse">
+  <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
         <button class="navbar-toggle collapsed" data-target="#navbar-items" data-toggle="collapse">
@@ -22,8 +22,6 @@
             <li><%= link_to "My Passes" %></li>
             <li><%= link_to "My Notifications" %></li>
             <li><%= link_to "Default Location" %></li>
-          </ul>
-          <ul class="nav navber-nav navbar-right">
             <li class="dropdown">
               <a href="user" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">User Name <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">

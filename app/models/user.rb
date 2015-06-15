@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  has_many :addresses
+  has_many :locations
   has_one :phone
+  accepts_nested_attributes_for :locations, allow_destroy: true
 end
