@@ -2,11 +2,12 @@ require 'HTTParty'
 require 'will_paginate/array'
 
 class LocationsController < ApplicationController
+  before_action :get_user
   before_action :get_passes, only: [:show]
   before_action :find_location, only: [:show, :edit, :update, :destroy]
 
   def index
-    @locations = Location.paginate(page: params[:page], per_page: 10)
+    @locations = current_user.locations.paginate(page: params[:page], per_page: 10)
     @hash = Gmaps4rails.build_markers(@locations) do |location, marker|
       marker.lat location.latitude
       marker.lng location.longitude
@@ -52,6 +53,10 @@ class LocationsController < ApplicationController
     @location = Location.find(params[:id])
     @iss_passes = HTTParty.get("http://api.open-notify.org/iss-pass.json?lat=#{@location.latitude}&lon=#{@location.longitude}&n=50", :verify => false)["response"]
     @iss_passes = @iss_passes.paginate(page: params[:page], per_page: 10)
+  end
+
+  def get_user
+    @user = current_user
   end
 
   private

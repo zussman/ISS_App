@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
   has_many :locations
   has_one :phone
   accepts_nested_attributes_for :locations, allow_destroy: true
+  accepts_nested_attributes_for :phone, allow_destroy: true
 end

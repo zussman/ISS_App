@@ -24,6 +24,9 @@
   position: relative;
 }
 
+.space {
+}
+
 #map { 
   height: 100%; 
   width: 100%; 

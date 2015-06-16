@@ -2,7 +2,13 @@ require 'httparty'
 
 class WelcomeController < ApplicationController
   before_action :get_location
+  before_action :logged_in
 
+  def logged_in
+    if user_signed_in?
+      @user = current_user
+    end
+  end
   def get_location
     iss_data = HTTParty.get("https://api.wheretheiss.at/v1/satellites/25544", :verify => false)
     mi_per_km = 0.621371
