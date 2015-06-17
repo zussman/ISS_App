@@ -13,7 +13,7 @@
             <%= f.input :last_name, required: true, autofocus: true %>
           </div>
         </div>
-        <% resource.build_phone %>
+        <% resource.phone or resource.build_phone %>
               <%= f.fields_for :phone do |phone_form| %>
                 <%= phone_form.input :phone_number, as: :tel, required: true, autofocus: true, class: "form-control" %>
               <% end %>

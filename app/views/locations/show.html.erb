@@ -3,6 +3,8 @@
   <h3>Coordinates: <%= @location.latitude %>, <%= @location.longitude %></h3>
   <%= link_to "Edit", edit_location_path %>
 </div>
+
+<h2>Future Passes</h2>
 <table class="table table-striped">
   <thead>
     <th>Date</th>
@@ -10,7 +12,6 @@
     <th>Duration</th>
     <th>Rise Time</th>
   </thead>
-  <%= will_paginate @iss_passes, renderer: BootstrapPagination::Rails %>
     <% @iss_passes.each do |pass| %>
       <tr>
         <td><%= Time.at(pass["risetime"].to_i).strftime('%A %B %e, %Y') %></td>
@@ -20,3 +21,4 @@
       </tr>
     <% end %>
 </table>
+<%= will_paginate @iss_passes, renderer: BootstrapPagination::Rails %>
