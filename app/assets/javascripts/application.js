@@ -15,8 +15,6 @@
 //= require jquery_nested_form
 //= require twitter/bootstrap
 //= require turbolinks
-//= require map_style
-//= require nite.js
 //= require underscore
 //= require gmaps/google
 //= require_tree .
